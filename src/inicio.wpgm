@@ -1,8 +1,8 @@
 import wollok.game.*
-import pepita.*
+import nivel.*
 
 program juego {
 	game.title("Juego Base")
-	game.addVisual(pepita)
+	nivel.configurate()
 	game.start()
 }
