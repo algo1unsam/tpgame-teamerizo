@@ -1,4 +1,4 @@
-# FROGGER
+# ERIZO
 
 ## Integrantes
 
