@@ -11,11 +11,18 @@ class Vehiculos {
 	
 	var position = self.posicionInicial()
 	
+	method cambiarDireccionDeMov(){
+		posX = game.width()
+		direccion = -1
+		esquina = game.width()
+	}
+	
 	method image() = image    //"assets/autoRojo.png"
 
     method position() = position
 
     method posicionInicial() = game.at(game.width()-posX, posY)
+    
 
     method iniciar(){
         position = self.posicionInicial()
