@@ -7,11 +7,21 @@ object nivel {
 	
 	const width = 17
 		// Sacar codigo redundante (sacar posX, direccion y esquina e implementar IzqODer)
-		var autoRojo1 = new Vehiculos(posY = 1, posX = width ,velocidad = 400, image = "assets/autoRojo.png", direccion = -1, esquina = width)
-		var autoRojo2 = new Vehiculos(posY = 2, velocidad = 400, image = "assets/autoRojo.png")
-		var autoRojo3 = new Vehiculos(posY = 3, velocidad = 400, image = "assets/autoRojo.png")
-		var autoRojo4 = new Vehiculos(posY = 4, velocidad = 400, image = "assets/autoRojo.png")
-		var autoRojo5 = new Vehiculos(posY = 5, velocidad = 400, image = "assets/autoRojo.png")
+		const autos = [
+			new Vehiculos(posY = 1 ,velocidad = 400, image = "assets/autoRojo.png"),
+			new Vehiculos(posY = 2, velocidad = 200, image = "assets/autoRojo.png"),
+			new Vehiculos(posY = 3, velocidad = 300, image = "assets/autoRojo.png"),
+			new Vehiculos(posY = 4, velocidad = 50, image = "assets/autoRojo.png"),
+			new Vehiculos(posY = 5, velocidad = 100, image = "assets/autoRojo.png")
+		]
+		
+		//const autoRojo1 = new Vehiculos(posY = 1 ,velocidad = 400, image = "assets/autoRojo.png")
+		//const autoRojo2 = new Vehiculos(posY = 2, velocidad = 200, image = "assets/autoRojo.png")
+		//const autoRojo3 = new Vehiculos(posY = 3, velocidad = 300, image = "assets/autoRojo.png")
+		//const autoRojo4 = new Vehiculos(posY = 4, velocidad = 50, image = "assets/autoRojo.png")
+		//const autoRojo5 = new Vehiculos(posY = 5, velocidad = 100, image = "assets/autoRojo.png")
+		
+		
 		
 
 	method configurate(){
@@ -28,20 +38,22 @@ object nivel {
 	 	game.addVisual(erizo)
 	 	movimiento.configurarFlechas(erizo)
 	 	
-		game.addVisual(autoRojo1)
-		game.addVisual(autoRojo2)
-		game.addVisual(autoRojo3)
-		game.addVisual(autoRojo4)
-		game.addVisual(autoRojo5)
+	 	autos.forEach{ auto =>
+	 		game.addVisual(auto)
+	 	}
+
+		autos.forEach(2){ auto =>
+			auto.cambiarDireccionDeMov()
+		}
+		//autoRojo1.cambiarDireccionDeMov()
 		
 		
 	//  INICIAR	
-		autoRojo1.iniciar()		
-		autoRojo2.iniciar()	
-		autoRojo3.iniciar()	
-		autoRojo4.iniciar()
-		autoRojo5.iniciar()	
-			
+	
+		autos.forEach{ auto =>
+		 		auto.iniciar()
+		 	}
+
 	//  Collide
 		game.onCollideDo(erizo,{ objeto => objeto.chocar()})
 	}
@@ -49,11 +61,10 @@ object nivel {
     
 	method terminar(){
         game.addVisual(gameOver)
-        autoRojo1.detener()
-        autoRojo2.detener()
-        autoRojo3.detener()
-        autoRojo4.detener()
-        autoRojo5.detener()
+        
+        autos.forEach{ auto =>
+		 		auto.detener()
+		 	}
         erizo.morir()
     }
 
