@@ -1,5 +1,6 @@
 import wollok.game.*
 import nivel.*
+import vehiculos.*
 
 program juego {
 	game.title("Juego Base")
