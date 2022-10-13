@@ -5,7 +5,7 @@ import nivel.*
 //class Madriguera{
 	var posX
 	var posY
-	var position = self.positionInicial()
+	 var position = self.positionInicial()
 	
 	method positionInicial() = game.at(posX, posY)
 	method estarAhi() =  game.addVisualIn("madriguera", position)      	 
