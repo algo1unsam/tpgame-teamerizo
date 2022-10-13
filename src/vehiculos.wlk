@@ -1,5 +1,6 @@
 import wollok.game.*
 import nivel.*
+import erizo.*
 
 class Vehiculos {
 	var posY
@@ -26,8 +27,7 @@ class Vehiculos {
 
     method iniciar(){
         position = self.posicionInicial()
-        game.onTick(velocidad, "vehiculos",{self.mover()})
-        }
+        game.onTick(velocidad, "vehiculos",{self.mover()})}
 
 	method mover(){
 			position = position.left(direccion)
@@ -36,7 +36,8 @@ class Vehiculos {
 	}
 	
 	method chocar(){
-        nivel.terminar()
+		erizo.quejarse()
+        nivel.perder()
     }
     
     method detener(){
