@@ -2,23 +2,27 @@ import wollok.game.*
 import nivel.*
 
 object reloj {
+
 	var tiempo
- 	const tiempoInicial = 60
-	
+	const tiempoInicial = 60
+
 	method text() = "tiempo restate " + tiempo.toString()
-	method position() = game.at(1, game.height()-1)
-	
+
+	method position() = game.at(1, game.height() - 1)
+
 	method pasarTiempo() {
-		tiempo = tiempo -1
-		if (tiempo == 0)
-		   nivel.perder()
-	
+		tiempo = tiempo - 1
+		if (tiempo == 0) nivel.perder()
 	}
-	method iniciar(){
+
+	method iniciar() {
 		tiempo = tiempoInicial
-		game.onTick(1000,"tiempo",{self.pasarTiempo()})
+		game.onTick(1000, "tiempo", { self.pasarTiempo()})
 	}
-	method detener(){
+
+	method detener() {
 		game.removeTickEvent("tiempo")
 	}
+
 }
+

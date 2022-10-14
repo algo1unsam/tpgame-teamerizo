@@ -2,7 +2,7 @@ import wollok.game.*
 import nivel.*
 import erizo.*
 
-class Tronco {
+ class Tronco {
 
 	var posY
 	var posX = 1

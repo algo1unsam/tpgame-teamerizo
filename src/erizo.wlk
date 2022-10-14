@@ -3,9 +3,8 @@ import plataformas.*
 import nivel.*
 
 object erizo {
-    var puntos = 0
-	
 
+	var puntos = 0
 	var vivo = true
 	var property position = new Position(x = 8, y = 0)
 
@@ -14,9 +13,9 @@ object erizo {
 	method morir() {
 		vivo = false
 	}
-	method quejarse(){
-	game.say(self, "¡Auch!")
-		
+
+	method quejarse() {
+		game.say(self, "¡Auch!")
 	}
 
 	method iniciar() {
@@ -35,15 +34,14 @@ object erizo {
 		position = position.left(1)
 		if (position.x() == -1) position = self.position()
 	}
-	
-	method aumentar(valor){ 
+
+	method aumentar(valor) {
 		puntos += valor
 	}
+
 	method puntaje() = puntos
 
+	method ganar() = victoria.cartel()
 
-    method ganar() = victoria.cartel()    
-    
-    
-    }
+}
 

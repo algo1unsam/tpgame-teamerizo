@@ -8,4 +8,4 @@ program juego {
 	game.title("Juego Base")
 	nivel.configurate()
 	game.start()
-}
+ }
