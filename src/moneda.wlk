@@ -21,6 +21,8 @@ class Moneda {
 	method image() = image
 
 	method position() = position
+	
+	
 
 }
 
