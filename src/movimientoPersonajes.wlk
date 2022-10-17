@@ -11,6 +11,7 @@ object movimiento {
 
 	method mover(direccion, personaje) {
 		personaje.position(direccion.siguiente(personaje.position()))
+		personaje.arribaDeTroncoFalse()
 	}
 
 }
