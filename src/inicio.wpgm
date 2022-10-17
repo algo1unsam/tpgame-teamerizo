@@ -1,0 +1,11 @@
+import wollok.game.*
+import nivel.*
+import vehiculos.*
+import moneda.*
+import plataformas.*
+
+program juego {
+	game.title("Juego Base")
+	nivel.configurate()
+	game.start()
+ }

@@ -1,10 +1,10 @@
-# Nombre del juego (<- borrar y completar)
+# ERIZO
 
-## Equipo de desarrollo
+## Integrantes
 
-- Alguien
-- Persona
-- etc.
+- Cairo Mary
+- Roffo Daniel
+- Mustafa Juan
 
 ## Capturas
 
