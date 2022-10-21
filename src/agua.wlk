@@ -3,48 +3,28 @@ import nivel.*
 import erizo.*
 
 
-class Agua {
+object agua {
 	
-	var posY
-	var posX = 1
-	var posXInicial
-	var velocidad
-	var image
-	var direccion = 1
-	var esquina = -1
-	var position = self.posicionInicial()
+	var property tocandoAgua = false
 	
+	//Coleccion de posiciones que queremos analizar
+	const pos = [
+		new Position(y = 7),
+		new Position(y = 8),
+		new Position(y = 9),
+		new Position(y = 10),
+		new Position(y = 11)
+	]
 	
-	method chocar() {
-		erizo.dentroDeZonaDeAgua()
-	}
-	
-	method cambiarDireccionDeMov() {
-		posX = game.width()
-		direccion = -1
-		esquina = game.width()
-	}
-
-	method image() = image // "assets/agua.png"
-
-	method position() = position
-
-	method posicionInicial() = game.at(game.width() - posX, posY)
-	
-	method posicionDeInicio() = game.at(posXInicial, posY)
-
-	method iniciar() {
-		position = self.posicionDeInicio()
-		game.onTick(velocidad, "agua", {self.mover()})
-	}
-
-	method mover() {
-		position = position.left(direccion)
-		if (position.x() == esquina) position = self.posicionInicial()
-	}
-	
-	method detener() {
-		game.removeTickEvent("agua")
-	}
-
+	//Comprobamos por cada posicion si el erizo se encuenta alli
+	method estaDentroDelAgua(){
+		//previo a la verificacion se debe de inicializar en false el valor tocandoAgua
+		self.tocandoAgua(false)
+		//Una vez terminado el forEach tendremos la respuesta a la pregunta (Esta dentro del agua?)
+		pos.forEach{ y =>
+			if(erizo.position().y() == y.y()){
+				self.tocandoAgua(true)
+				}
+			}
+		}
 }

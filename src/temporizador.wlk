@@ -23,6 +23,8 @@ object reloj {
 	method detener() {
 		game.removeTickEvent("tiempo")
 	}
+	
+	method chocar(){}
 
 }
 

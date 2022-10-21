@@ -1,15 +1,15 @@
 import wollok.game.*
 import plataformas.*
 import nivel.*
+import agua.*
 
 object erizo {
 
 	var puntos = 0
 	var vivo = true
 	var property position = new Position(x = 8, y = 0)
-	var property arribaDeTronco = false
-	var arribaDeAgua = false
 	var direccionDelTronco
+	var property estaArriba = false
 
 
 	method image() = "assets/erizo_arriba.png"
@@ -34,35 +34,30 @@ object erizo {
 		return vivo
 	}
 
-	
+	//Guardamos la direccion en la que se mueve el ultimo tronco con el cual haya colicionado el erizo
 	method seSubio(direccion) {
-		arribaDeTronco = true
-		arribaDeAgua = false
 		direccionDelTronco = direccion
-		
 	}
 	
-	method dentroDeZonaDeAgua(){
-		
-		arribaDeAgua = true
-		
-		if(arribaDeTronco && arribaDeAgua){
-			
-			position = position.left(direccionDelTronco)
-			
-		}else if(!arribaDeTronco && arribaDeAgua){
-			
-			self.meAhogo()
+	
+	//Verificamos posicion del erizo para detectar si esta pisando agua o no
+	method verificarPosicion(){
+		agua.estaDentroDelAgua()
+		//Una vez obtenida la respuesta a la pregunta "estaDentroDelAgua" comprobamos si el erizo
+		//se encuentra dentro de la zona de agua y afuera de un objeto
+		//En caso de no estarlo, sigue el juego
+		if(agua.tocandoAgua() && !self.estaArriba()){
+			game.say(self, "¡Me ahogooo!")
 			nivel.perder()
 		}
-		
-	
 	}
 	
-	method arribaDeTroncoFalse(){
-		arribaDeTronco = false
+	//Movemos al erizo +1 espacios en la direccion del ultimo tronco con el cual haya colicionado
+	method meMuevoConTronco(){
+		position = position.left(direccionDelTronco)
 	}
-
+	
+	
 	method aumentar(valor) {
 		puntos += valor
 	}
