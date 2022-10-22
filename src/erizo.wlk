@@ -5,6 +5,7 @@ import agua.*
 
 object erizo {
 
+	var vidas = 3
 	var puntos = 0
 	var vivo = true
 	var property position = new Position(x = 8, y = 0)
@@ -13,6 +14,22 @@ object erizo {
 
 
 	method image() = "assets/erizo_arriba.png"
+	
+	method posicionDeInicio() = game.at(8, 0)
+	
+	method perderVida() {
+	vidas -=1
+	
+    position = self.posicionDeInicio() 
+	
+	 game.say(self ,"Me quedan " + self.vidas() + " vidas")  	  
+	 if(vidas == 0){
+		nivel.perder()
+		}
+	   
+	}
+	
+	method vidas() = vidas
 
 	method morir() {
 		vivo = false
@@ -48,7 +65,7 @@ object erizo {
 		//En caso de no estarlo, sigue el juego
 		if(agua.tocandoAgua() && !self.estaArriba()){
 			game.say(self, "¡Me ahogooo!")
-			nivel.perder()
+			self.perderVida()
 		}
 	}
 	
@@ -69,4 +86,3 @@ object erizo {
 	method ganar() = victoria.cartel()
 
 }
-

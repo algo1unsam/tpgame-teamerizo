@@ -13,47 +13,47 @@ object nivel {
 	const width = 17
 	
 	const autosDer = [ 
-		new Vehiculos(posY = 1 , posXInicio = 1,velocidad = 400, image = "assets/autoRojo.png"),		
-		new Vehiculos(posY = 3, posXInicio = 1,velocidad = 300, image = "assets/autoRojo.png"),				
-		new Vehiculos(posY = 5, posXInicio = 11,velocidad = 100, image = "assets/autoRojo.png")
+		new AutoRapido(posY = 1 , posXInicio = 1),		
+		new AutoLento(posY = 3, posXInicio = 1),				
+		new AutoMedio(posY = 5, posXInicio = 1)
 	]
 	
 	const autosIzq = [
-		new Vehiculos(posY = 2,posXInicio = 1, velocidad = 200, image = "assets/autoRojo.png"),		
-		new Vehiculos(posY = 4,posXInicio = 1, velocidad = 50, image = "assets/autoRojo.png")
+		new AutoMedio(posY = 2,posXInicio = 1),		
+		new AutoLento(posY = 4,posXInicio = 1)
 	]
 	
-	const troncosDer = [
-		new Tronco(posY = 7 ,velocidad = 1000, posXInicio = 1, image = "assets/TRONCO.png"),
-		new Tronco(posY = 7 ,velocidad = 1000, posXInicio = 2, image = "assets/TRONCO.png"),
-		new Tronco(posY = 7 ,velocidad = 1000, posXInicio = 8, image = "assets/TRONCO.png"),
-		new Tronco(posY = 7 ,velocidad = 1000, posXInicio = 9, image = "assets/TRONCO.png"),
-		new Tronco(posY = 7 ,velocidad = 1000, posXInicio = 13, image = "assets/TRONCO.png"),
+	const plataformasDer = [
+		new Tronco(posY = 7 ,posXInicio = 1),
+		new Tronco(posY = 7 , posXInicio = 2),
+		new Tronco(posY = 7 , posXInicio = 8),
+		new Tronco(posY = 7 , posXInicio = 9),
+		new Tronco(posY = 7 , posXInicio = 13),
 		
-		new Tronco(posY = 9, velocidad = 800, posXInicio = 4, image = "assets/TRONCO.png"),
-		new Tronco(posY = 9, velocidad = 800, posXInicio = 5, image = "assets/TRONCO.png"),
-		new Tronco(posY = 9, velocidad = 800, posXInicio = 10, image = "assets/TRONCO.png"),
-		new Tronco(posY = 9, velocidad = 800, posXInicio = 11, image = "assets/TRONCO.png"),		
+		new Tortuga(posY = 9, posXInicio = 4),
+		new Tortuga(posY = 9, posXInicio = 5),
+		new Tortuga(posY = 9, posXInicio = 10),
+		new Tortuga(posY = 9, posXInicio = 11),		
 			
-		new Tronco(posY = 11, velocidad = 500, posXInicio = 1, image = "assets/TRONCO.png"),
-		new Tronco(posY = 11, velocidad = 500, posXInicio = 2, image = "assets/TRONCO.png"),
-		new Tronco(posY = 11, velocidad = 500, posXInicio = 6, image = "assets/TRONCO.png"),
-		new Tronco(posY = 11, velocidad = 500, posXInicio = 7, image = "assets/TRONCO.png"),
-		new Tronco(posY = 11, velocidad = 500, posXInicio = 12, image = "assets/TRONCO.png"),
-		new Tronco(posY = 11, velocidad = 500, posXInicio = 13, image = "assets/TRONCO.png")
+		new Tronco(posY = 11, posXInicio = 1),
+		new Tronco(posY = 11, posXInicio = 2),
+		new Tronco(posY = 11, posXInicio = 6),
+		new Tronco(posY = 11, posXInicio = 7),
+		new Tronco(posY = 11, posXInicio = 12),
+		new Tronco(posY = 11, posXInicio = 13)
 	]
 	
-	const troncosIzq = [
+	const plataformasIzq = [
 		
-		new Tronco(posY = 8, velocidad = 500, posXInicio = 1, image = "assets/TRONCO.png"),
-		new Tronco(posY = 8, velocidad = 500, posXInicio = 4, image = "assets/TRONCO.png"),
-		new Tronco(posY = 8, velocidad = 500, posXInicio = 7, image = "assets/TRONCO.png"),
-		new Tronco(posY = 8, velocidad = 500, posXInicio = 10, image = "assets/TRONCO.png"),
-		new Tronco(posY = 8, velocidad = 500, posXInicio = 13, image = "assets/TRONCO.png"),	
+		new Tronco(posY = 8, posXInicio = 1),
+		new Tronco(posY = 8, posXInicio = 4),
+		new Tronco(posY = 8, posXInicio = 7),
+		new Tronco(posY = 8, posXInicio = 10),
+		new Tronco(posY = 8, posXInicio = 13),	
 		
-		new Tronco(posY = 10, velocidad = 1000, posXInicio = 15, image = "assets/TRONCO.png"),
-		new Tronco(posY = 10, velocidad = 1000, posXInicio = 14, image = "assets/TRONCO.png"),
-		new Tronco(posY = 10, velocidad = 1000, posXInicio = 13, image = "assets/TRONCO.png")
+		new Tronco(posY = 10, posXInicio = 15),
+		new Tronco(posY = 10, posXInicio = 14),
+		new Tronco(posY = 10, posXInicio = 13)
 	]
 	
 	const madrigueras = [
@@ -75,26 +75,33 @@ object nivel {
 		
 		
 		
-		troncosDer.forEach{ tronco => 
-			game.addVisual(tronco)
-			tronco.iniciar()
+		plataformasDer.forEach{ plataforma => 
+			game.addVisual(plataforma)
+			plataforma.velocidad()
+			plataforma.iniciar()
 		
 		}
-		troncosIzq.forEach{ tronco => 
-			game.addVisual(tronco)
-			tronco.iniciar()
-			tronco.cambiarDireccionDeMov()
+		plataformasIzq.forEach{ plataforma => 
+			game.addVisual(plataforma)
+			plataforma.velocidad()
+			plataforma.iniciar()
+			plataforma.cambiarDireccionDeMov()
 		
 		}
 		autosDer.forEach{ auto => 
+			
+			auto.velocidad()			
 			game.addVisual(auto)
 			auto.iniciar()
 		}
 		
 		autosIzq.forEach{ auto => 
+			
+			auto.velocidad()
+			auto.cambiarDireccionDeMov()			
 			game.addVisual(auto)
 			auto.iniciar()
-			auto.cambiarDireccionDeMov()
+			
 		}
 		
 		madrigueras.forEach{ madriguera =>
@@ -124,8 +131,8 @@ object nivel {
 	method terminar() {
 		autosDer.forEach{ auto => auto.detener()}
 		autosIzq.forEach{ auto => auto.detener()}
-		troncosDer.forEach{ tronco => tronco.detener()}
-		troncosIzq.forEach{ tronco => tronco.detener()}
+		plataformasDer.forEach{ plataforma => plataforma.detener()}
+		plataformasIzq.forEach{ plataforma => plataforma.detener()}
 		reloj.detener()
 	}
 
@@ -163,4 +170,3 @@ object gameOver {
 	method text() = "GAME OVER"
 
 }
-

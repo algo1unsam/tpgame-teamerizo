@@ -2,13 +2,13 @@ import wollok.game.*
 import nivel.*
 import erizo.*
 
-class Tronco {
+class Plataforma {
 
 	var posY
 	var posX = 1
 	var posXInicio
-	var velocidad
-	var image
+	var property velocidad = 100
+	var property image = "assets/plataformaBasica.png"
 	var direccion = 1
 	var esquina = -1
 	var position = self.posicionEsquina()
@@ -70,7 +70,35 @@ class Tronco {
 		game.removeTickEvent("troncos")
 	}
 	
-	
-
 }
 
+
+class Tortuga inherits Plataforma{
+	
+	var nuevaImagen = "assets/tortugaIzquierda.png"
+	
+	override method velocidad(){
+		velocidad = 1000
+	}
+	
+	override method image() = nuevaImagen
+	
+	override method cambiarDireccionDeMov(){
+	    super()
+	    nuevaImagen = "assets/tortugaDerecha.png"
+	 
+	}
+}
+
+
+class Tronco inherits Plataforma{
+	
+	const nuevaImagen = "assets/TRONCO.png"
+	
+	override method velocidad(){
+		velocidad = 800
+	}
+	
+	override method image() = nuevaImagen
+	
+}

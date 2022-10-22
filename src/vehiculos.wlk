@@ -7,8 +7,8 @@ class Vehiculos {
 	var posY
 	var posX = 1
 	var posXInicio
-	var velocidad
-	var image
+	var property velocidad = 100
+	var property image = "assets/autoRojo.png"
 	var direccion = 1
 	var esquina = -1
 	var position = self.posicionEsquina()
@@ -39,8 +39,9 @@ class Vehiculos {
 
 	method chocar() {
 		erizo.quejarse()
-		nivel.perder()
+		erizo.perderVida()
 	}
+		
 
 	method detener() {
 		game.removeTickEvent("vehiculos")
@@ -49,3 +50,52 @@ class Vehiculos {
 	method desplazar(){}
 }
 
+class AutoRapido inherits Vehiculos{
+	
+	var nuevaImagen = "assets/autoDeportivoIzquierda.png"
+	
+	override method velocidad(){
+		velocidad = 50
+	}
+	
+	override method image() = nuevaImagen
+	
+	override method cambiarDireccionDeMov(){
+	    super()
+	    nuevaImagen = "assets/autoDeportivoDerecha.png"
+	 
+	}
+}
+
+class AutoLento inherits Vehiculos{
+	
+	var nuevaImagen = "assets/camionIzquierda.png"
+	
+	override method velocidad(){
+		velocidad = 1000
+	}
+	
+	override method image() = nuevaImagen
+		
+	override method cambiarDireccionDeMov(){
+		super() 
+	    nuevaImagen = "assets/camionDerecha.png"
+	}
+}
+
+class AutoMedio inherits Vehiculos{
+	
+	var nuevaImagen = "assets/autoRojoIzquierda.png"
+	
+	override method velocidad(){
+		velocidad = 300
+	}	
+	
+	override method image() = nuevaImagen
+	
+	override method cambiarDireccionDeMov(){
+		super()
+	    nuevaImagen = "assets/autoRojoDerecha.png"
+	  
+	}
+}
