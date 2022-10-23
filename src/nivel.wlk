@@ -8,72 +8,46 @@ import temporizador.*
 import agua.*
 import madriguera.*
 
-object nivel {
-
-	const width = 17
+	const autosDer = []
 	
-	const autosDer = [ 
-		new AutoRapido(posY = 1 , posXInicio = 1),		
-		new AutoLento(posY = 3, posXInicio = 1),				
-		new AutoMedio(posY = 5, posXInicio = 1)
-	]
+	const autosIzq = []
 	
-	const autosIzq = [
-		new AutoMedio(posY = 2,posXInicio = 1),		
-		new AutoLento(posY = 4,posXInicio = 1)
-	]
+	const plataformasDer = []
 	
-	const plataformasDer = [
-		new Tronco(posY = 7 ,posXInicio = 1),
-		new Tronco(posY = 7 , posXInicio = 2),
-		new Tronco(posY = 7 , posXInicio = 8),
-		new Tronco(posY = 7 , posXInicio = 9),
-		new Tronco(posY = 7 , posXInicio = 13),
-		
-		new Tortuga(posY = 9, posXInicio = 4),
-		new Tortuga(posY = 9, posXInicio = 5),
-		new Tortuga(posY = 9, posXInicio = 10),
-		new Tortuga(posY = 9, posXInicio = 11),		
-			
-		new Tronco(posY = 11, posXInicio = 1),
-		new Tronco(posY = 11, posXInicio = 2),
-		new Tronco(posY = 11, posXInicio = 6),
-		new Tronco(posY = 11, posXInicio = 7),
-		new Tronco(posY = 11, posXInicio = 12),
-		new Tronco(posY = 11, posXInicio = 13)
-	]
-	
-	const plataformasIzq = [
-		
-		new Tronco(posY = 8, posXInicio = 1),
-		new Tronco(posY = 8, posXInicio = 4),
-		new Tronco(posY = 8, posXInicio = 7),
-		new Tronco(posY = 8, posXInicio = 10),
-		new Tronco(posY = 8, posXInicio = 13),	
-		
-		new Tronco(posY = 10, posXInicio = 15),
-		new Tronco(posY = 10, posXInicio = 14),
-		new Tronco(posY = 10, posXInicio = 13)
-	]
+	const plataformasIzq = []
 	
 	const madrigueras = [
 	 	new Madriguera(posX = 7 , posY = 12),
 	 	new Madriguera(posX = 9 , posY = 12)
 	 ]
-	
+
+const width = 17
+
+object nivel {
+
 	method configurate() {
 		// CONFIG	
 		
 		game.height(13)
 		game.width(width)
-		game.boardGround("assets/backgroundFrog.png")
+		game.boardGround("assets/backgroundFrog.png")		
+	
+	}
+	
+	method cargarObjetos(dificultad){
+		dificultad.cargar(plataformasDer, plataformasIzq, autosDer, autosIzq)
+	}
+	
+	method iniciarNivel(){
 		
 		// VISUALES
 		game.addVisual(reloj)
 		
-		movimiento.configurarFlechas(erizo)
+		// MOVIMIENTOS
+		movimiento.configurarFlechas(erizo)		
 		
-		
+		// RELOJ
+		reloj.iniciar()
 		
 		plataformasDer.forEach{ plataforma => 
 			game.addVisual(plataforma)
@@ -107,20 +81,16 @@ object nivel {
 		madrigueras.forEach{ madriguera =>
 			game.addVisual(madriguera)
 		}
-			
+		
 		self.generarMonedas()
+		
 		game.addVisual(erizo)
-			
-		reloj.iniciar()
-		
-		
-			
-		self.generarMonedas()
 		
 		// Collide
 		game.whenCollideDo(erizo, { objeto => objeto.chocar()})
 		
 	}
+	
 
 	method perder() {
 		game.addVisual(gameOver)
@@ -153,7 +123,7 @@ object nivel {
 
 object victoria {
 
-	method position() = game.center()
+	method position() = game.origin()
 
 	method cartel() = game.addVisual(self)
 

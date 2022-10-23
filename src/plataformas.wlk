@@ -102,3 +102,21 @@ class Tronco inherits Plataforma{
 	override method image() = nuevaImagen
 	
 }
+
+class Mantarraya inherits Plataforma{
+	
+	var nuevaImagen = "assets/mantarrayaIzquierda.png"
+	
+	override method velocidad(){
+		velocidad = 200
+	}
+	
+	override method image() = nuevaImagen
+	
+	override method cambiarDireccionDeMov(){
+	    super()
+	    nuevaImagen = "assets/mantarrayaDerecha.png"
+	 
+	}
+	
+}

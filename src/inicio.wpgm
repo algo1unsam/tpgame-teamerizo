@@ -3,10 +3,31 @@ import nivel.*
 import vehiculos.*
 import moneda.*
 import plataformas.*
+import menu.*
+import agregarValores.*
 
 program juego {
 	game.title("Juego Base")
 	nivel.configurate()
+	menu.pantalla()
+	keyboard.num1().onPressDo{
+		game.clear()
+		nivel.cargarObjetos(nivelFacil)
+		nivel.iniciarNivel()
+	}
+	
+	keyboard.num2().onPressDo{
+		game.clear()
+		nivel.cargarObjetos(nivelMedio)
+		nivel.iniciarNivel()
+	}
+	
+	keyboard.num3().onPressDo{
+		game.clear()
+		nivel.cargarObjetos(nivelDificil)
+		nivel.iniciarNivel()
+	}
+	
 	game.start()
  }
  

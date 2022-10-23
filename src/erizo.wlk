@@ -83,6 +83,8 @@ object erizo {
 
 	method puntaje() = puntos
 
-	method ganar() = victoria.cartel()
-
+	method ganar() {
+		game.clear()
+		return victoria.cartel()
+	}
 }
