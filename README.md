@@ -1,4 +1,5 @@
 # ERIZO
+![menuVacio](https://user-images.githubusercontent.com/101224516/197887606-cd84461c-6731-453f-9461-eb1d6ae31e4a.png)
 
 ## Integrantes
 
