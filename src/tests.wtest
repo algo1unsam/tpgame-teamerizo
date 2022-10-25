@@ -12,7 +12,7 @@ describe "Erizo Game"{
 	const posicionInicial = new Position(x = 8, y = 0)
 	const posicionDesplazadoALaIzquierda= new Position(x = 7, y = 0)
 	const autoNormal = new AutoMedio(posY = 7 , posXInicio = 0)
-	const plataformaTronco = new Tronco(posY = 8 ,posXInicio = 0)
+	const plataformaTronco = new Tronco(posY = 4 ,posXInicio = 0)
 	
 	method configurarNivel1(){
 		nivel.configurate()
@@ -52,11 +52,5 @@ describe "Erizo Game"{
 		assert.equals(true, erizo.estaArriba())
 	}
 	
-	test "Erizo se sube a una plataforma y se mueve hacia la derecha"{ 
-		plataformaTronco.chocar()
-		plataformaTronco.estaArribaDelObjeto()
-		
-		assert.equals(plataformaTronco.position(), erizo.position())
-	}
 	
 }
