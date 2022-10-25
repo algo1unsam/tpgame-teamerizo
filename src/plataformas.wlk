@@ -53,6 +53,10 @@ class Plataforma {
 	method mover() {
 		position = position.left(direccion)
 		//Si se encuentra al final del mapa, lo regresamos a la esquina opuesta
+		
+		if (erizo.estaArriba()){
+			erizo.fueraDeMapa() 
+		}
 		if (position.x() == esquina) position = self.posicionEsquina()
 	}
 

@@ -7,7 +7,7 @@ import moneda.*
 import temporizador.*
 import agua.*
 import madriguera.*
-
+ 
 	const autosDer = []
 	
 	const autosIzq = []
@@ -43,6 +43,11 @@ object nivel {
 		// VISUALES
 		game.addVisual(reloj)
 		
+        game.addVisual(primeraVida)
+        game.addVisual(segundaVida)
+        game.addVisual(terceraVida)
+        
+		
 		// MOVIMIENTOS
 		movimiento.configurarFlechas(erizo)		
 		
@@ -53,6 +58,7 @@ object nivel {
 			game.addVisual(plataforma)
 			plataforma.velocidad()
 			plataforma.iniciar()
+
 		
 		}
 		plataformasIzq.forEach{ plataforma => 
@@ -90,10 +96,23 @@ object nivel {
 		game.whenCollideDo(erizo, { objeto => objeto.chocar()})
 		
 	}
-	
-
-	method perder() {
-		game.addVisual(gameOver)
+	method perderPorVehiculo() {
+		game.addVisual(gameOverGolpeado)
+		self.terminar()
+		erizo.morir()
+	}    
+	method perderPorAgua() {
+		game.addVisual(gameOverAhogado)
+		self.terminar()
+		erizo.morir()
+	}    
+	method perderPorTiempo() {
+		game.addVisual(gameOverTiempo)
+		self.terminar()
+		erizo.morir()
+	}
+	method perderPorSalirDeMapa() {
+		game.addVisual(gameOverSalirDeMapa)
 		self.terminar()
 		erizo.morir()
 	}
@@ -119,6 +138,7 @@ object nivel {
 
 	method posicionAleatoria() = game.at(0.randomUpTo(game.width()), 1.randomUpTo(game.height()))
 
+
 }
 
 object victoria {
@@ -131,12 +151,39 @@ object victoria {
 
 }
 
-object gameOver {
+object gameOverTiempo {
 	
 	method chocar() {}
 
-	method position() = game.center()
+	method position() = game.origin()
 
-	method text() = "GAME OVER"
+	method image() = "assets/perderPorTiempo.png"
+ 
+}
+object gameOverGolpeado {
+	
+	method chocar() {}
 
+	method position() = game.origin()
+
+	method image() = "assets/erizoGolpeado.png"
+
+}
+object gameOverAhogado {
+	
+	method chocar() {}
+
+	method position() = game.origin()
+
+	method image() = "assets/erizoAhogado.png"
+
+}
+object gameOverSalirDeMapa {
+	
+	method chocar() {}
+
+	method position() = game.origin()
+
+	method image() = "assets/erizoFueraDeMapa.png"
+ 
 }

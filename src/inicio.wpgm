@@ -1,5 +1,5 @@
 import wollok.game.*
-import nivel.*
+import nivel.* 
 import vehiculos.*
 import moneda.*
 import plataformas.*
@@ -12,6 +12,7 @@ program juego {
 	menu.pantalla()
 	keyboard.num1().onPressDo{
 		game.clear()
+		
 		nivel.cargarObjetos(nivelFacil)
 		nivel.iniciarNivel()
 	}
@@ -30,4 +31,3 @@ program juego {
 	
 	game.start()
  }
- 

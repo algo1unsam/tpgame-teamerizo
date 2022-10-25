@@ -39,7 +39,7 @@ class Vehiculos {
 
 	method chocar() {
 		erizo.quejarse()
-		erizo.perderVida()
+		erizo.perderVidaPorVehiculo()
 	}
 		
 

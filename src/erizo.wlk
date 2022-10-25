@@ -2,6 +2,7 @@ import wollok.game.*
 import plataformas.*
 import nivel.*
 import agua.*
+import temporizador.*
 
 object erizo {
 
@@ -17,19 +18,48 @@ object erizo {
 	
 	method posicionDeInicio() = game.at(8, 0)
 	
-	method perderVida() {
+//	method salirDeMapa(){
+//	if(position.x() == -1) self.perderVidaPorAgua()
+//	}
+	
+	
+	method perderVidaPorVehiculo() {
 	vidas -=1
-	
     position = self.posicionDeInicio() 
-	
-	 game.say(self ,"Me quedan " + self.vidas() + " vidas")  	  
+		  
 	 if(vidas == 0){
-		nivel.perder()
+		nivel.perderPorVehiculo()
 		}
+	primeraVida.restarVida()
+	segundaVida.restarVida()
 	   
 	}
 	
-	method vidas() = vidas
+	method perderVidaPorAgua() {
+	vidas -=1
+    position = self.posicionDeInicio() 
+	  
+	 if(vidas == 0){
+		nivel.perderPorAgua()
+		}
+	primeraVida.restarVida()
+	segundaVida.restarVida()	   
+	}
+	 
+	method perderVidaPorSaliDeMapa() {
+	vidas -=1
+    position = self.posicionDeInicio() 
+	
+    if(vidas == 0){
+	nivel.perderPorSalirDeMapa()
+		}
+	primeraVida.restarVida()
+	segundaVida.restarVida()	   
+	}
+	
+	
+	method vidas() = vidas 
+	
 
 	method morir() {
 		vivo = false
@@ -65,13 +95,28 @@ object erizo {
 		//En caso de no estarlo, sigue el juego
 		if(agua.tocandoAgua() && !self.estaArriba()){
 			game.say(self, "¡Me ahogooo!")
-			self.perderVida()
+			self.perderVidaPorAgua()
 		}
+			self.fueraDeMapa()
 	}
+ 
 	
 	//Movemos al erizo +1 espacios en la direccion del ultimo tronco con el cual haya colicionado
 	method meMuevoConTronco(){
 		position = position.left(direccionDelTronco)
+	}
+	method fueraDeMapa(){
+		self.fueraDeEjeX()
+		self.fueraDeEjeY()
+	}
+	
+	method fueraDeEjeX(){
+		if (position.x() == -1 || position.x() == game.width()) self.perderVidaPorSaliDeMapa()
+	}
+	
+	method fueraDeEjeY(){
+		if (position.y() == -1 ) position = game.at(position.x(), 0)
+		if (position.y() == game.height()) position = game.at(position.x(), game.height() - 1)
 	}
 	
 	
@@ -87,4 +132,5 @@ object erizo {
 		game.clear()
 		return victoria.cartel()
 	}
+	
 }
