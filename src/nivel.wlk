@@ -7,10 +7,11 @@ import moneda.*
 import temporizador.*
 import agua.*
 import madriguera.*
+import sonido.*
  
 	const autosDer = []
 	
-	const autosIzq = []
+	const autosIzq = [] 
 	
 	const plataformasDer = []
 	
@@ -22,17 +23,17 @@ import madriguera.*
 	 ]
 
 const width = 17
-
+ 
 object nivel {
 
 	method configurate() {
 		// CONFIG	
-		
 		game.height(13)
 		game.width(width)
-		game.boardGround("assets/backgroundFrog.png")		
+		game.boardGround("assets/backgroundFrog.png")	
+
 	
-	}
+	}  
 	
 	method cargarObjetos(dificultad){
 		dificultad.cargar(plataformasDer, plataformasIzq, autosDer, autosIzq)
@@ -98,21 +99,26 @@ object nivel {
 	}
 	method perderPorVehiculo() {
 		game.addVisual(gameOverGolpeado)
+		perder.play()		
 		self.terminar()
 		erizo.morir()
 	}    
 	method perderPorAgua() {
 		game.addVisual(gameOverAhogado)
+		perder.play()		
 		self.terminar()
 		erizo.morir()
 	}    
 	method perderPorTiempo() {
+		fondo1.pause()
 		game.addVisual(gameOverTiempo)
+		perder.play()				
 		self.terminar()
 		erizo.morir()
 	}
 	method perderPorSalirDeMapa() {
 		game.addVisual(gameOverSalirDeMapa)
+		perder.play()		
 		self.terminar()
 		erizo.morir()
 	}
@@ -127,7 +133,7 @@ object nivel {
 
 	// MONEDA
 	method generarMonedas() {
-		game.schedule(500, { self.generarMoneda(100)})
+		game.schedule(50, { self.generarMoneda(100)})
 	}
 
 	method generarMoneda(valor) {

@@ -1,6 +1,7 @@
 import wollok.game.*
 import nivel.*
 import erizo.*
+import sonido.*
 
 class Vehiculos {
 

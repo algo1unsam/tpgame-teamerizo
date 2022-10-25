@@ -5,28 +5,35 @@ import moneda.*
 import plataformas.*
 import menu.*
 import agregarValores.*
+import sonido.*
 
 program juego {
 	game.title("Juego Base")
 	nivel.configurate()
 	menu.pantalla()
 	keyboard.num1().onPressDo{
-		game.clear()
+	game.clear()
 		
 		nivel.cargarObjetos(nivelFacil)
 		nivel.iniciarNivel()
+		fondo1.play()
+		
 	}
 	
 	keyboard.num2().onPressDo{
 		game.clear()
 		nivel.cargarObjetos(nivelMedio)
 		nivel.iniciarNivel()
+		fondo1.play()
+		
 	}
 	
 	keyboard.num3().onPressDo{
 		game.clear()
 		nivel.cargarObjetos(nivelDificil)
-		nivel.iniciarNivel()
+ 		nivel.iniciarNivel()
+ 		fondo1.play()
+ 
 	}
 	
 	game.start()

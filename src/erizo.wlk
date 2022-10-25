@@ -3,6 +3,7 @@ import plataformas.*
 import nivel.*
 import agua.*
 import temporizador.*
+import sonido.*
 
 object erizo {
 
@@ -28,7 +29,9 @@ object erizo {
     position = self.posicionDeInicio() 
 		  
 	 if(vidas == 0){
+	    fondo1.pause()
 		nivel.perderPorVehiculo()
+		
 		}
 	primeraVida.restarVida()
 	segundaVida.restarVida()
@@ -40,6 +43,7 @@ object erizo {
     position = self.posicionDeInicio() 
 	  
 	 if(vidas == 0){
+	 	 fondo1.pause()
 		nivel.perderPorAgua()
 		}
 	primeraVida.restarVida()
@@ -51,6 +55,7 @@ object erizo {
     position = self.posicionDeInicio() 
 	
     if(vidas == 0){
+    fondo1.pause()
 	nivel.perderPorSalirDeMapa()
 		}
 	primeraVida.restarVida()
@@ -124,13 +129,15 @@ object erizo {
 		puntos += valor
 	}
 	
-
+ 
 
 	method puntaje() = puntos
 
 	method ganar() {
 		game.clear()
-		return victoria.cartel()
+		fondo1.pause()
+		victoria.cartel()
+	return ganarr.play()
 	}
-	
+	 
 }

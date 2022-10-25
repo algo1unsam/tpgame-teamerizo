@@ -1,6 +1,7 @@
 import wollok.game.*
 import nivel.*
 import erizo.*
+import sonido.*
 
 object reloj {
 
@@ -13,7 +14,8 @@ object reloj {
 
 	method pasarTiempo() {
 		tiempo = tiempo - 1
-		if (tiempo == 0) nivel.perderPorTiempo()
+		if (tiempo == 0) 
+		nivel.perderPorTiempo()
 	}
 
 	method iniciar() {

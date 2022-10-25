@@ -1,4 +1,6 @@
 import wollok.game.*
+import sonido.*
+
 
 object menu {
 	
@@ -6,6 +8,12 @@ object menu {
 
 	method image() = "assets/menu.png"
 	
-	method pantalla() = game.addVisual(self)
+	method pantalla() {
+	game.addVisual(self)
+	
+	}
+	
+
+	
 	
 }
