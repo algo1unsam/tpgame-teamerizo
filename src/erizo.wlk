@@ -11,7 +11,7 @@ object erizo {
 	var puntos = 0
 	var vivo = true
 	var property position = new Position(x = 8, y = 0)
-	var direccionDelTronco
+	var property direccionDelTronco
 	var property estaArriba = false
 
 
@@ -25,41 +25,41 @@ object erizo {
 	
 	
 	method perderVidaPorVehiculo() {
-	vidas -=1
-    position = self.posicionDeInicio() 
+		vidas -=1
+	    position = self.posicionDeInicio() 
 		  
-	 if(vidas == 0){
-	    fondo1.pause()
-		nivel.perderPorVehiculo()
+	 	if(vidas == 0){
+		    fondo1.pause()
+			nivel.perderPorVehiculo()
 		
 		}
-	primeraVida.restarVida()
-	segundaVida.restarVida()
+		primeraVida.restarVida()
+		segundaVida.restarVida()
 	   
 	}
 	
 	method perderVidaPorAgua() {
-	vidas -=1
-    position = self.posicionDeInicio() 
-	  
-	 if(vidas == 0){
-	 	 fondo1.pause()
-		nivel.perderPorAgua()
+		vidas -=1
+	    position = self.posicionDeInicio() 
+		  
+	 	if(vidas == 0){
+		 	fondo1.pause()
+			nivel.perderPorAgua()
 		}
-	primeraVida.restarVida()
-	segundaVida.restarVida()	   
+		primeraVida.restarVida()
+		segundaVida.restarVida()	   
 	}
 	 
 	method perderVidaPorSaliDeMapa() {
-	vidas -=1
-    position = self.posicionDeInicio() 
-	
-    if(vidas == 0){
-    fondo1.pause()
-	nivel.perderPorSalirDeMapa()
+		vidas -=1
+	    position = self.posicionDeInicio() 
+		
+	    if(vidas == 0){
+		    fondo1.pause()
+			nivel.perderPorSalirDeMapa()
 		}
-	primeraVida.restarVida()
-	segundaVida.restarVida()	   
+		primeraVida.restarVida()
+		segundaVida.restarVida()	   
 	}
 	
 	

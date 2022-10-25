@@ -1,6 +1,62 @@
+import erizo.*
+import temporizador.*
+import nivel.*
+import agregarValores.*
+import sonido.*
+import wollok.game.*
+import vehiculos.*
+import plataformas.*
 
-test "testX" {
-
-	assert.that(true)
-
+describe "Erizo Game"{
+	
+	const posicionInicial = new Position(x = 8, y = 0)
+	const posicionDesplazadoALaIzquierda= new Position(x = 7, y = 0)
+	const autoNormal = new AutoMedio(posY = 7 , posXInicio = 0)
+	const plataformaTronco = new Tronco(posY = 8 ,posXInicio = 0)
+	
+	method configurarNivel1(){
+		nivel.configurate()
+		nivel.cargarObjetos(nivelFacil)
+		nivel.iniciarNivel()		
+			
+	}
+	
+	test "Erizo pierde 1 vidas"{
+		self.configurarNivel1()
+		erizo.perderVidaPorVehiculo()
+	
+		assert.equals(2, erizo.vidas())
+	}
+	
+	test "Erizo es inicializado en x = 8, y = 0"{
+		self.configurarNivel1()
+		assert.equals(posicionInicial, erizo.position())
+	}
+	
+	test "Erizo se mueve del tronco hacia la derecha"{
+		self.configurarNivel1()
+		erizo.direccionDelTronco(1)
+		erizo.meMuevoConTronco()
+		assert.equals(posicionDesplazadoALaIzquierda, erizo.position())
+	}
+	
+	test "Erizo choca contra auto y pierde vida"{
+		self.configurarNivel1() 
+		autoNormal.chocar()
+		assert.equals(2, erizo.vidas())
+	}
+	
+	test "Erizo se sube a una plataforma"{
+		self.configurarNivel1() 
+		plataformaTronco.chocar()
+		assert.equals(true, erizo.estaArriba())
+	}
+	
+	test "Erizo se sube a una plataforma y se mueve hacia la derecha"{ 
+		plataformaTronco.chocar()
+		plataformaTronco.estaArribaDelObjeto()
+		
+		assert.equals(plataformaTronco.position(), erizo.position())
+	}
+	
 }
