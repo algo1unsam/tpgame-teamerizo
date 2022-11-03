@@ -95,12 +95,12 @@ class Tronco inherits Plataforma{
 
 class Mantarraya inherits Plataforma{
 	
-	const imagenDerecha = "assets/tortugaDerecha.png"
-	const imagenIzquierda = "assets/mantarrayaDerecha.png"
+	const imagenDerecha = "assets/mantarrayaDerecha.png"
+	const imagenIzquierda = "assets/mantarrayaIzquierda.png"
 	
 	
 	override method velocidad(){
-		velocidad = 200
+		velocidad = 400
 	}
 	
 	override method image() = if(direc.esDerecha()) imagenDerecha else imagenIzquierda 

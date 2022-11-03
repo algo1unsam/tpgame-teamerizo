@@ -4,6 +4,7 @@ import nivel.*
 import agua.*
 import temporizador.*
 import sonido.*
+import movimientoPersonajes.*
 
 object erizo {
 
@@ -11,7 +12,7 @@ object erizo {
 	var puntos = 0
 	var vivo = true
 	var property position = self.posicionDeInicio()
-	var property direccionDelTronco
+	var property direccionDelTronco = derecha
 	var property estaArriba = false
 
 
@@ -94,11 +95,7 @@ object erizo {
 	
 	//Verificamos posicion del erizo para detectar si esta pisando agua o no
 	method verificarPosicion(){
-		agua.estaDentroDelAgua()
-		//Una vez obtenida la respuesta a la pregunta "estaDentroDelAgua" comprobamos si el erizo
-		//se encuentra dentro de la zona de agua y afuera de un objeto
-		//En caso de no estarlo, sigue el juego
-		if(agua.tocandoAgua() && !self.estaArriba()){
+		if(agua.estaDentroDelAgua(self) && !self.estaArriba()){
 			game.say(self, "¡Me ahogooo!")
 			self.perderVidaPorAgua()
 		}

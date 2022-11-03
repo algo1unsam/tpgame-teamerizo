@@ -106,12 +106,12 @@ object nivelDificil inherits Niveles{
 			self.crearAutoRapido(2,1, izquierda) +
 			self.crearAutoRapido(4,1, izquierda) +
 			//plataformas
-			self.crearDosMantarrayas(7,1,-1,derecha) +
-			self.crearDosMantarrayas(7,8,-1,derecha) +			
-			self.crearDosMantarrayas(9,4,-1,derecha) +
-			self.crearDosMantarrayas(9,10,-1,derecha)+			
-			self.crearDosMantarrayas(11,1,-1,derecha)+
-			self.crearDosMantarrayas(11,12,-1,derecha)+
+			self.crearDosMantarrayas(7,1,1,derecha) +
+			self.crearDosMantarrayas(7,8,1,derecha) +			
+			self.crearDosMantarrayas(9,4,1,derecha) +
+			self.crearDosMantarrayas(9,10,1,derecha)+			
+			self.crearDosMantarrayas(11,1,1,derecha)+
+			self.crearDosMantarrayas(11,12,1,derecha)+
 			self.crearDosMantarrayas(8,4,-1,izquierda) +
 			self.crearDosMantarrayas(10,13,-1,izquierda) 
 		)
