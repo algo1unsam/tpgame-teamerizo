@@ -48,11 +48,26 @@ object izquierda {
 
 	method siguiente(position) = position.left(1)
 
+	method posicionDeReinicio() = game.width() - 1
+	
+	method direccion() = 1
+	
+	method esquina() = -1
+	
+	method esDerecha() = false
 }
 
 object derecha {
 
 	method siguiente(position) = position.right(1)
+	
+	method posicionDeReinicio() = 0
+	
+	method direccion() = -1
+	
+	method esquina() = game.width()
+	
+	method esDerecha() = true
 
 }
 

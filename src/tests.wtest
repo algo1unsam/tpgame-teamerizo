@@ -52,8 +52,5 @@ describe "Erizo Game"{
 		assert.equals(true, erizo.estaArriba())
 	}
 	
-		test "Erizo gana si llega a madriguera"{
-		assert.equals(victoria.image(),  "assets/winner.png")
-	}
 	
 }

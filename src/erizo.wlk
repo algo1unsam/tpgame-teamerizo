@@ -10,7 +10,7 @@ object erizo {
 	var vidas = 3
 	var puntos = 0
 	var vivo = true
-	var property position = new Position(x = 8, y = 0)
+	var property position = self.posicionDeInicio()
 	var property direccionDelTronco
 	var property estaArriba = false
 
@@ -108,7 +108,7 @@ object erizo {
 	
 	//Movemos al erizo +1 espacios en la direccion del ultimo tronco con el cual haya colicionado
 	method meMuevoConTronco(){
-		position = position.left(direccionDelTronco)
+		position = position.left(direccionDelTronco.direccion())
 	}
 	method fueraDeMapa(){
 		self.fueraDeEjeX()

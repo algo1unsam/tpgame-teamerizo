@@ -8,14 +8,8 @@ import temporizador.*
 import agua.*
 import madriguera.*
 import sonido.*
- 
-	const autosDer = []
-	
-	const autosIzq = [] 
-	
-	const plataformasDer = []
-	
-	const plataformasIzq = []
+
+	const objetos = []
 	
 	const madrigueras = [
 	 	new Madriguera(posX = 7 , posY = 12),
@@ -36,14 +30,14 @@ object nivel {
 	}  
 	
 	method cargarObjetos(dificultad){
-		dificultad.cargar(plataformasDer, plataformasIzq, autosDer, autosIzq)
+		dificultad.seImplementanElementos()
+		dificultad.cargar(objetos)
 	}
 	
 	method iniciarNivel(){
 		
 		// VISUALES
 		game.addVisual(reloj)
-		
         game.addVisual(primeraVida)
         game.addVisual(segundaVida)
         game.addVisual(terceraVida)
@@ -55,36 +49,13 @@ object nivel {
 		// RELOJ
 		reloj.iniciar()
 		
-		plataformasDer.forEach{ plataforma => 
-			game.addVisual(plataforma)
-			plataforma.velocidad()
-			plataforma.iniciar()
-
-		
-		}
-		plataformasIzq.forEach{ plataforma => 
-			game.addVisual(plataforma)
-			plataforma.velocidad()
-			plataforma.iniciar()
-			plataforma.cambiarDireccionDeMov()
-		
-		}
-		autosDer.forEach{ auto => 
+		objetos.reverse().forEach{ objeto => 
 			
-			auto.velocidad()			
-			game.addVisual(auto)
-			auto.iniciar()
+			game.addVisual(objeto)
+			objeto.velocidad()
+			objeto.iniciar()
 		}
-		
-		autosIzq.forEach{ auto => 
 			
-			auto.velocidad()
-			auto.cambiarDireccionDeMov()			
-			game.addVisual(auto)
-			auto.iniciar()
-			
-		}
-		
 		madrigueras.forEach{ madriguera =>
 			game.addVisual(madriguera)
 		}
@@ -124,10 +95,7 @@ object nivel {
 	}
 
 	method terminar() {
-		autosDer.forEach{ auto => auto.detener()}
-		autosIzq.forEach{ auto => auto.detener()}
-		plataformasDer.forEach{ plataforma => plataforma.detener()}
-		plataformasIzq.forEach{ plataforma => plataforma.detener()}
+		objetos.forEach{ objeto => objeto.detener()}
 		reloj.detener()
 	}
 

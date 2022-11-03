@@ -1,169 +1,119 @@
 import plataformas.*
 import vehiculos.*
+import movimientoPersonajes.*
 
 
-object nivelFacil {
+class Niveles{
 	
-	const autosDer = [ 
-		new AutoMedio(posY = 1 , posXInicio = 1),
-		new AutoMedio(posY = 1 , posXInicio = 7),		
-		new AutoLento(posY = 3, posXInicio = 1),
-		new AutoLento(posY = 3, posXInicio = 7),
-		new AutoLento(posY = 3, posXInicio = 12),				
-		new AutoMedio(posY = 5, posXInicio = 1),
-		new AutoMedio(posY = 5, posXInicio = 7)
-	]
+	const objetos = []
 	
-	const autosIzq = [
-		new AutoMedio(posY = 2,posXInicio = 1),		
-		new AutoRapido(posY = 4,posXInicio = 1)
-	]
+	method seImplementanElementos()
 	
-	const plataformasDer = [
-		new Tronco(posY = 7 ,posXInicio = 1),
-		new Tronco(posY = 7 , posXInicio = 2),
-		new Tronco(posY = 7 , posXInicio = 8),
-		new Tronco(posY = 7 , posXInicio = 9),
-		new Tronco(posY = 7 , posXInicio = 13),
-		
-		new Tortuga(posY = 9, posXInicio = 4),
-		new Tortuga(posY = 9, posXInicio = 5),
-		new Tortuga(posY = 9, posXInicio = 10),
-		new Tortuga(posY = 9, posXInicio = 11),		
-			
-		new Tronco(posY = 11, posXInicio = 1),
-		new Tronco(posY = 11, posXInicio = 2),
-		new Tronco(posY = 11, posXInicio = 6),
-		new Tronco(posY = 11, posXInicio = 7),
-		new Tronco(posY = 11, posXInicio = 12),
-		new Tronco(posY = 11, posXInicio = 13)
-	]
+	//n = distancia entre objetos
 	
-	const plataformasIzq = [
-		
-		new Tronco(posY = 8, posXInicio = 1),
-		new Tronco(posY = 8, posXInicio = 4),
-		new Tronco(posY = 8, posXInicio = 7),
-		new Tronco(posY = 8, posXInicio = 10),
-		new Tronco(posY = 8, posXInicio = 13),	
-		
-		new Tronco(posY = 10, posXInicio = 15),
-		new Tronco(posY = 10, posXInicio = 14),
-		new Tronco(posY = 10, posXInicio = 13)
-	]
+	method crearTresTroncos(y,x,n,direccion) = [new Tronco(posY = y ,posXInicio = x, direc = direccion),new Tronco(posY = y ,posXInicio = x+n, direc = direccion),new Tronco(posY = y ,posXInicio = x+n+n, direc = direccion)]
 	
-	method cargar(platDer, platIzq, aDer, aIzq){
-		platDer.addAll(plataformasDer)
-		platIzq.addAll(plataformasIzq)
-		aDer.addAll(autosDer)
-		aIzq.addAll(autosIzq)
+	method crearDosTroncos(y,x,n,direccion) = [new Tronco(posY = y ,posXInicio = x, direc = direccion),new Tronco(posY = y ,posXInicio = x+n, direc = direccion)]
+	
+	method crearTresTortugas(y,x,n,direccion) = [new Tortuga(posY = y ,posXInicio = x, direc = direccion),new Tortuga(posY = y ,posXInicio = x+n, direc = direccion),new Tortuga(posY = y ,posXInicio = x+n+n, direc = direccion)]
+	
+	method crearDosTortugas(y,x,n,direccion) = [new Tortuga(posY = y ,posXInicio = x, direc = direccion),new Tortuga(posY = y ,posXInicio = x+n, direc = direccion)]
+	
+	method crearTresMantarrayas(y,x,n,direccion) = [new Mantarraya(posY = y ,posXInicio = x, direc = direccion),new Mantarraya(posY = y ,posXInicio = x+n, direc = direccion),new Mantarraya(posY = y ,posXInicio = x+n+n, direc = direccion)]
+	
+	method crearDosMantarrayas(y,x,n,direccion) = [new Mantarraya(posY = y ,posXInicio = x, direc = direccion),new Mantarraya(posY = y ,posXInicio = x+n, direc = direccion)]
+	
+	method crearDosAutosMedios(y,x,n,direccion) = [new AutoMedio(posY = y , posXInicio = x, direc = direccion), new AutoMedio(posY = y , posXInicio = x+n, direc = direccion)]
+	
+	method crearDosAutosLentos(y,x,n,direccion) = [new AutoLento(posY = y , posXInicio = x, direc = direccion), new AutoLento(posY = y , posXInicio = x+n, direc = direccion)]
+	
+	method crearAutoRapido(y,x,direccion) = [new AutoRapido(posY = y,posXInicio = x, direc = direccion)]
+	
+	method cargar(obj){
+		obj.addAll(objetos)
 	}
 	
 }
 
-
-object nivelMedio {
+object nivelFacil inherits Niveles{
 	
-		const autosDer = [ 
-		new AutoRapido(posY = 1 , posXInicio = 1),		
-		new AutoLento(posY = 3, posXInicio = 1),
-		new AutoLento(posY = 3, posXInicio = 4),
-		new AutoLento(posY = 3, posXInicio = 8),
-		new AutoLento(posY = 3, posXInicio = 12),				
-		new AutoRapido(posY = 5 , posXInicio = 1)	
-	]
-	
-	const autosIzq = [
-		new AutoMedio(posY = 2,posXInicio = 1),
-		new AutoMedio(posY = 2,posXInicio = 3),	
-		new AutoMedio(posY = 2,posXInicio = 10),			
-		new AutoMedio(posY = 4,posXInicio = 1),	
-		new AutoMedio(posY = 4,posXInicio = 8)	
-	]
-	
-	const plataformasDer = [
-		new Tronco(posY = 7 ,posXInicio = 1),
-		new Tronco(posY = 7 , posXInicio = 2),
-		new Tronco(posY = 7 , posXInicio = 9),
-		new Tronco(posY = 7 , posXInicio = 13),
+	override method seImplementanElementos(){
 		
-		new Tortuga(posY = 9, posXInicio = 4),
-		new Tortuga(posY = 9, posXInicio = 5),
-		new Tortuga(posY = 9, posXInicio = 10),
-		new Tortuga(posY = 9, posXInicio = 11),		
-			
-		new Tronco(posY = 11, posXInicio = 1),
-		new Tronco(posY = 11, posXInicio = 2),
-		new Tronco(posY = 11, posXInicio = 6),
-		new Tronco(posY = 11, posXInicio = 7),
-		new Tronco(posY = 11, posXInicio = 12),
-		new Tronco(posY = 11, posXInicio = 13)
-	]
-	
-	const plataformasIzq = [
-		
-		new Tronco(posY = 8, posXInicio = 1),
-		new Tronco(posY = 8, posXInicio = 4),
-		new Tronco(posY = 8, posXInicio = 13),	
-		
-		new Mantarraya(posY = 10, posXInicio = 15),
-		new Mantarraya(posY = 10, posXInicio = 14),
-		new Mantarraya(posY = 10, posXInicio = 13)
-	]
-	
-	method cargar(platDer, platIzq, aDer, aIzq){
-		platDer.addAll(plataformasDer)
-		platIzq.addAll(plataformasIzq)
-		aDer.addAll(autosDer)
-		aIzq.addAll(autosIzq)
-	}
+		objetos.addAll(
+			//autos
+			self.crearDosAutosMedios(1,1,4, derecha) +
+			self.crearDosAutosMedios(1,8,2, derecha)	+
+			self.crearDosAutosLentos(3,1,5, derecha) +
+			self.crearDosAutosLentos(3,10,2, derecha) +		
+			self.crearDosAutosMedios(5,8,8, derecha) +
+			self.crearDosAutosMedios(2,1,5, izquierda) +		
+			self.crearAutoRapido(4,1, izquierda) +
+			//plataformas
+			self.crearTresTroncos(7,1,1,derecha) +
+			self.crearTresTroncos(7,7,1,derecha) +
+			self.crearDosTroncos(7,12,1,derecha) +
+			self.crearTresTortugas(9,4,2,derecha) +
+			self.crearDosTortugas(9,12,1,derecha) +
+			self.crearDosTroncos(11,3,1,derecha) +
+			self.crearDosTroncos(11,10,1,derecha) +
+			self.crearDosTroncos(11,15,1,derecha) +
+			self.crearTresTroncos(8,1,-1,izquierda) + 
+			self.crearDosTroncos(8,9,-1,izquierda) +
+			self.crearTresTroncos(10,14,-1,izquierda) +
+			self.crearTresTroncos(10,5,-1,izquierda)
+			)		
+		}
 	
 }
 
-object nivelDificil {
+
+object nivelMedio inherits Niveles{
 	
-		const autosDer = [ 
-		new AutoRapido(posY = 1 , posXInicio = 1),		
-		new AutoRapido(posY = 3, posXInicio = 1),				
-		new AutoRapido(posY = 5, posXInicio = 1)
-	]
-	
-	const autosIzq = [
-		new AutoRapido(posY = 2,posXInicio = 1),		
-		new AutoRapido(posY = 4,posXInicio = 1)
-	]
-	
-	const plataformasDer = [
-		new Mantarraya(posY = 7 ,posXInicio = 1),
-		new Mantarraya(posY = 7 , posXInicio = 2),
-		new Mantarraya(posY = 7 , posXInicio = 8),
-		new Mantarraya(posY = 7 , posXInicio = 9),
-		new Mantarraya(posY = 7 , posXInicio = 13),
-		
-		new Mantarraya(posY = 9, posXInicio = 4),
-		new Mantarraya(posY = 9, posXInicio = 10),
-		new Mantarraya(posY = 9, posXInicio = 11),		
+	override method seImplementanElementos(){
+		objetos.addAll(
+			//autos
+			self.crearDosAutosMedios(1,1,4, derecha) +
+			self.crearDosAutosMedios(1,14,2, derecha)+			
+			self.crearDosAutosMedios(3,1,5, derecha) +
+			self.crearDosAutosMedios(3,8,3, derecha) +							
+			self.crearDosAutosMedios(5,8,8, derecha) +
+			self.crearAutoRapido(2,6, izquierda) +		
+			self.crearAutoRapido(4,1, izquierda) +
+			//plataformas
+			self.crearTresTroncos(7,1,1,derecha) +
+			self.crearDosTroncos(7,12,3,derecha) +			
+			self.crearTresTortugas(9,4,3,derecha)+			
+			self.crearDosTroncos(11,3,6,derecha) +
+			self.crearDosTroncos(11,15,1,derecha) +
+			self.crearDosMantarrayas(8,1,-4,izquierda) + 			
+			self.crearDosTroncos(10,14,-1,izquierda) +
+			self.crearDosTroncos(10,5,-1,izquierda)
+			)
 			
-		new Mantarraya(posY = 11, posXInicio = 1),
-		new Mantarraya(posY = 11, posXInicio = 2),
-		new Mantarraya(posY = 11, posXInicio = 12),
-		new Mantarraya(posY = 11, posXInicio = 13)
-	]
+		}
 	
-	const plataformasIzq = [
-		
-		new Mantarraya(posY = 8, posXInicio = 1),
-		new Mantarraya(posY = 8, posXInicio = 4),
-		new Mantarraya(posY = 8, posXInicio = 13),	
-		
-		new Mantarraya(posY = 10, posXInicio = 15),
-		new Mantarraya(posY = 10, posXInicio = 13)
-	]
+}
+
+object nivelDificil inherits Niveles{
 	
-	method cargar(platDer, platIzq, aDer, aIzq){
-		platDer.addAll(plataformasDer)
-		platIzq.addAll(plataformasIzq)
-		aDer.addAll(autosDer)
-		aIzq.addAll(autosIzq)
-	}
+	override method seImplementanElementos(){
+		
+		objetos.addAll(
+			//autos
+			self.crearAutoRapido(1,1, derecha) +
+			self.crearAutoRapido(3,1, derecha) +
+			self.crearAutoRapido(5,1, derecha) +	
+			self.crearAutoRapido(2,1, izquierda) +
+			self.crearAutoRapido(4,1, izquierda) +
+			//plataformas
+			self.crearDosMantarrayas(7,1,-1,derecha) +
+			self.crearDosMantarrayas(7,8,-1,derecha) +			
+			self.crearDosMantarrayas(9,4,-1,derecha) +
+			self.crearDosMantarrayas(9,10,-1,derecha)+			
+			self.crearDosMantarrayas(11,1,-1,derecha)+
+			self.crearDosMantarrayas(11,12,-1,derecha)+
+			self.crearDosMantarrayas(8,4,-1,izquierda) +
+			self.crearDosMantarrayas(10,13,-1,izquierda) 
+		)
+	}	
 }

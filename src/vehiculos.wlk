@@ -6,25 +6,18 @@ import sonido.*
 class Vehiculos {
 
 	var posY
-	var posX = 1
 	var posXInicio
 	var property velocidad = 100
 	var property image = "assets/autoRojo.png"
-	var direccion = 1
-	var esquina = -1
-	var position = self.posicionEsquina()
+	var position = self.posicionDeInicio()
+	var property direc
 
-	method cambiarDireccionDeMov() {
-		posX = game.width()
-		direccion = -1
-		esquina = game.width()
-	}
 
-	method image() = image // "assets/autoRojo.png"
+	method image() = if(direc.esDerecha()) image else image 
 	
 	method position() = position
 
-	method posicionEsquina() = game.at(game.width() - posX, posY)
+	method posicionEsquina() = game.at(direc.posicionDeReinicio(), posY)
 
 	method posicionDeInicio() = game.at(posXInicio , posY)
 
@@ -34,8 +27,8 @@ class Vehiculos {
 	}
 
 	method mover() {
-		position = position.left(direccion)
-		if (position.x() == esquina) position = self.posicionEsquina()
+		position = position.left(direc.direccion())
+		if (position.x() == direc.esquina()) position = self.posicionEsquina()
 	}
 
 	method chocar() {
@@ -53,50 +46,40 @@ class Vehiculos {
 
 class AutoRapido inherits Vehiculos{
 	
-	var nuevaImagen = "assets/autoDeportivoIzquierda.png"
+	const imagenDerecha = "assets/autoDeportivoDerecha.png"
+	const imagenIzquierda = "assets/autoDeportivoIzquierda.png"
 	
 	override method velocidad(){
 		velocidad = 50
 	}
 	
-	override method image() = nuevaImagen
+	override method image() = if(direc.esDerecha()) imagenDerecha else imagenIzquierda 
 	
-	override method cambiarDireccionDeMov(){
-	    super()
-	    nuevaImagen = "assets/autoDeportivoDerecha.png"
-	 
-	}
+	
 }
 
 class AutoLento inherits Vehiculos{
 	
-	var nuevaImagen = "assets/camionIzquierda.png"
+	const imagenDerecha = "assets/camionDerecha.png"
+	const imagenIzquierda = "assets/camionIzquierda.png"
 	
 	override method velocidad(){
 		velocidad = 1000
 	}
 	
-	override method image() = nuevaImagen
+	override method image() = if(direc.esDerecha()) imagenDerecha else imagenIzquierda 
 		
-	override method cambiarDireccionDeMov(){
-		super() 
-	    nuevaImagen = "assets/camionDerecha.png"
-	}
 }
 
 class AutoMedio inherits Vehiculos{
 	
-	var nuevaImagen = "assets/autoRojoIzquierda.png"
+	const imagenDerecha = "assets/autoRojoDerecha.png"
+	const imagenIzquierda = "assets/autoRojoIzquierda.png"
 	
 	override method velocidad(){
 		velocidad = 300
 	}	
 	
-	override method image() = nuevaImagen
+	override method image() = if(direc.esDerecha()) imagenDerecha else imagenIzquierda 
 	
-	override method cambiarDireccionDeMov(){
-		super()
-	    nuevaImagen = "assets/autoRojoDerecha.png"
-	  
-	}
 }
