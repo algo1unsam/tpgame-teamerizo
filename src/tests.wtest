@@ -6,13 +6,14 @@ import sonido.*
 import wollok.game.*
 import vehiculos.*
 import plataformas.*
+import movimientoPersonajes.*
 
 describe "Erizo Game"{
 	
 	const posicionInicial = new Position(x = 8, y = 0)
-	const posicionDesplazadoALaIzquierda= new Position(x = 7, y = 0)
-	const autoNormal = new AutoMedio(posY = 7 , posXInicio = 0)
-	const plataformaTronco = new Tronco(posY = 4 ,posXInicio = 0)
+	const posicionDesplazadoALaDerecha= new Position(x = 9, y = 0)
+	const autoNormal = new AutoMedio(posY = 7 , posXInicio = 0, direc = derecha)
+	const plataformaTronco = new Tronco(posY = 4 ,posXInicio = 0, direc = derecha)
 	
 	method configurarNivel1(){
 		nivel.configurate()
@@ -35,9 +36,9 @@ describe "Erizo Game"{
 	
 	test "Erizo se mueve del tronco hacia la derecha"{
 		self.configurarNivel1()
-		erizo.direccionDelTronco(1)
+		erizo.direccionDelTronco(derecha)
 		erizo.meMuevoConTronco()
-		assert.equals(posicionDesplazadoALaIzquierda, erizo.position())
+		assert.equals(posicionDesplazadoALaDerecha, erizo.position())
 	}
 	
 	test "Erizo choca contra auto y pierde vida"{
