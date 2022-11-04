@@ -14,58 +14,53 @@ object erizo {
 	var property position = self.posicionDeInicio()
 	var property direccionDelTronco = derecha
 	var property estaArriba = false
-
+ 
 
 	method image() = "assets/erizo_arriba.png"
 	
 	method posicionDeInicio() = game.at(8, 0)
-	
-//	method salirDeMapa(){
-//	if(position.x() == -1) self.perderVidaPorAgua()
-//	}
-	
-	
-	method perderVidaPorVehiculo() {
-		vidas -=1
-	    position = self.posicionDeInicio() 
-		  
-	 	if(vidas == 0){
-		    fondo1.pause()
-			nivel.perderPorVehiculo()
+	 
 		
+	method perderVidaPorVehiculo() {
+	vidas -=1
+    position = self.posicionDeInicio() 
+		   
+	 if(vidas == 0){
+		nivel.perderPor(gameOverGolpeado)
 		}
-		primeraVida.restarVida()
-		segundaVida.restarVida()
-	   
-	}
+	self.restarVida()
 	
+		
+
+	
+}
 	method perderVidaPorAgua() {
-		vidas -=1
-	    position = self.posicionDeInicio() 
-		  
-	 	if(vidas == 0){
-		 	fondo1.pause()
-			nivel.perderPorAgua()
+	vidas -=1
+    position = self.posicionDeInicio() 
+	  
+	 if(vidas == 0){
+		nivel.perderPor(gameOverAhogado)
 		}
-		primeraVida.restarVida()
-		segundaVida.restarVida()	   
+	self.restarVida()
+		
+	  		
 	}
 	 
 	method perderVidaPorSaliDeMapa() {
-		vidas -=1
-	    position = self.posicionDeInicio() 
-		
-	    if(vidas == 0){
-		    fondo1.pause()
-			nivel.perderPorSalirDeMapa()
+	vidas -=1
+    position = self.posicionDeInicio() 
+	
+    if(vidas == 0){
+	nivel.perderPor(gameOverMapa)
 		}
-		primeraVida.restarVida()
-		segundaVida.restarVida()	   
+	self.restarVida()
+		
+
 	}
 	
 	
 	method vidas() = vidas 
-	
+	 
 
 	method morir() {
 		vivo = false
@@ -104,7 +99,7 @@ object erizo {
  
 	
 	//Movemos al erizo +1 espacios en la direccion del ultimo tronco con el cual haya colicionado
-	method meMuevoConTronco(){
+	method meMuevoConTronco(){ 
 		position = position.left(direccionDelTronco.direccion())
 	}
 	method fueraDeMapa(){
@@ -137,4 +132,14 @@ object erizo {
 	return ganarr.play()
 	}
 	 
+	
+	method restarVida(){
+  	if(self.vidas() == 2){  	
+  	corazones.get(2).quitar()}
+ 
+    if(self.vidas() == 1){ 	
+  	corazones.get(1).quitar()}
+    
+}
+
 }

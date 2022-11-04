@@ -2,15 +2,19 @@ import wollok.game.*
 import erizo.*
 import movimientoPersonajes.*
 import vehiculos.*
-import plataformas.*
+import plataformas.* 
 import moneda.*
 import temporizador.*
 import agua.*
-import madriguera.*
-import sonido.*
+import madriguera.* 
+import sonido.* 
 
 	const objetos = []
-	
+	const corazones = [new Vida (position = game.at(13, 12)), 
+		               new Vida (position = game.at(14, 12)),
+		               new Vida (position = game.at(15, 12))    
+	]
+	  
 	const madrigueras = [
 	 	new Madriguera(posX = 7 , posY = 12),
 	 	new Madriguera(posX = 9 , posY = 12)
@@ -19,6 +23,7 @@ import sonido.*
 const width = 17
  
 object nivel {
+
 
 	method configurate() {
 		// CONFIG	
@@ -38,10 +43,10 @@ object nivel {
 		
 		// VISUALES
 		game.addVisual(reloj)
-        game.addVisual(primeraVida)
-        game.addVisual(segundaVida)
-        game.addVisual(terceraVida)
-        
+//        game.addVisual(primeraVida)
+//        game.addVisual(segundaVida)
+//        game.addVisual(terceraVida)
+//        
 		
 		// MOVIMIENTOS
 		movimiento.configurarFlechas(erizo)		
@@ -59,6 +64,9 @@ object nivel {
 		madrigueras.forEach{ madriguera =>
 			game.addVisual(madriguera)
 		}
+		corazones.forEach{ corazon =>
+			game.addVisual(corazon)
+		}
 		
 		self.generarMonedas()
 		
@@ -67,32 +75,16 @@ object nivel {
 		// Collide
 		game.whenCollideDo(erizo, { objeto => objeto.chocar()})
 		
-	}
-	method perderPorVehiculo() {
-		game.addVisual(gameOverGolpeado)
-		perder.play()		
-		self.terminar()
-		erizo.morir()
-	}    
-	method perderPorAgua() {
-		game.addVisual(gameOverAhogado)
-		perder.play()		
-		self.terminar()
-		erizo.morir()
-	}    
-	method perderPorTiempo() {
-		fondo1.pause()
-		game.addVisual(gameOverTiempo)
-		perder.play()				
-		self.terminar()
+	} 
+	
+	method perderPor(motivo){
+		fondo1.pause() 
+		game.addVisual(motivo)		
+     	perder.play()		 
+	    self.terminar()
 		erizo.morir()
 	}
-	method perderPorSalirDeMapa() {
-		game.addVisual(gameOverSalirDeMapa)
-		perder.play()		
-		self.terminar()
-		erizo.morir()
-	}
+
 
 	method terminar() {
 		objetos.forEach{ objeto => objeto.detener()}
@@ -116,48 +108,32 @@ object nivel {
 }
 
 object victoria {
-
 	method position() = game.origin()
-
 	method cartel() = game.addVisual(self)
-
 	method image() = "assets/winner.png"
-
-}
+} 
 
 object gameOverTiempo {
-	
 	method chocar() {}
-
 	method position() = game.origin()
-
-	method image() = "assets/perderPorTiempo.png"
+    method image() = "assets/perderPorTiempo.png"
  
 }
 object gameOverGolpeado {
-	
 	method chocar() {}
-
-	method position() = game.origin()
-
-	method image() = "assets/erizoGolpeado.png"
+    method position() = game.origin()
+    method image() = "assets/erizoGolpeado.png"
 
 }
 object gameOverAhogado {
-	
 	method chocar() {}
-
 	method position() = game.origin()
-
 	method image() = "assets/erizoAhogado.png"
 
 }
-object gameOverSalirDeMapa {
-	
+object gameOverMapa {
 	method chocar() {}
-
 	method position() = game.origin()
-
 	method image() = "assets/erizoFueraDeMapa.png"
- 
+	
 }
