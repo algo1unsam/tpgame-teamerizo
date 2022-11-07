@@ -7,6 +7,7 @@ import wollok.game.*
 import vehiculos.*
 import plataformas.*
 import movimientoPersonajes.*
+import vidas.*
 
 describe "Erizo Game"{
 	
@@ -24,9 +25,9 @@ describe "Erizo Game"{
 	
 	test "Erizo pierde 1 vidas"{
 		self.configurarNivel1()
-		erizo.perderVidaPorVehiculo()
+		erizo.perderVidaPor("assets/erizoGolpeado.png")
 	
-		assert.equals(2, erizo.vidas())
+		assert.equals(2, tableroDevidas.corazones().size())
 	}
 	
 	test "Erizo es inicializado en x = 8, y = 0"{
@@ -44,7 +45,7 @@ describe "Erizo Game"{
 	test "Erizo choca contra auto y pierde vida"{
 		self.configurarNivel1() 
 		autoNormal.chocar()
-		assert.equals(2, erizo.vidas())
+		assert.equals(2, tableroDevidas.corazones().size())
 	}
 	
 	test "Erizo se sube a una plataforma"{
