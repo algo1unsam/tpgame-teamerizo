@@ -7,31 +7,19 @@ import moneda.*
 import temporizador.*
 import agua.*
 import madriguera.* 
-import sonido.* 
+import sonido.*
+import vidas.* 
 
-	const objetos = []
-	const corazones = [new Vida (position = game.at(13, 12)), 
-		               new Vida (position = game.at(14, 12)),
-		               new Vida (position = game.at(15, 12))    
-	]
-	  
-	const madrigueras = [
-	 	new Madriguera(posX = 7 , posY = 12),
-	 	new Madriguera(posX = 9 , posY = 12)
-	 ]
-
+const objetos = []	
 const width = 17
  
 object nivel {
-
-
+	
 	method configurate() {
 		// CONFIG	
 		game.height(13)
 		game.width(width)
 		game.boardGround("assets/backgroundFrog.png")	
-
-	
 	}  
 	
 	method cargarObjetos(dificultad){
@@ -42,11 +30,7 @@ object nivel {
 	method iniciarNivel(){
 		
 		// VISUALES
-		game.addVisual(reloj)
-//        game.addVisual(primeraVida)
-//        game.addVisual(segundaVida)
-//        game.addVisual(terceraVida)
-//        
+		game.addVisual(reloj)       
 		
 		// MOVIMIENTOS
 		movimiento.configurarFlechas(erizo)		
@@ -61,10 +45,10 @@ object nivel {
 			objeto.iniciar()
 		}
 			
-		madrigueras.forEach{ madriguera =>
+		sectorDeMadrigueras.madrigueras().forEach{ madriguera =>
 			game.addVisual(madriguera)
 		}
-		corazones.forEach{ corazon =>
+		tableroDevidas.corazones().forEach{ corazon =>
 			game.addVisual(corazon)
 		}
 		
@@ -78,11 +62,11 @@ object nivel {
 	} 
 	
 	method perderPor(motivo){
-		fondo1.pause() 
-		game.addVisual(motivo)		
-     	perder.play()		 
+		soundFondo.pause()
+		pantallaFinal.image(motivo) 
+		game.addVisual(pantallaFinal)		
+     	soundPerder.play()		 
 	    self.terminar()
-		erizo.morir()
 	}
 
 
@@ -104,36 +88,32 @@ object nivel {
 
 	method posicionAleatoria() = game.at(0.randomUpTo(game.width()), 1.randomUpTo(game.height()))
 
+	method ganar(){
+		game.clear()
+		soundFondo.pause()
+		victoria.cartel()
+	 	soundGanar.play()
+	}
 
 }
+
+object pantallaFinal{
+	
+	var image
+	
+	method position() = game.origin()
+	
+	method image(newImage){
+		image = newImage
+	}
+	
+	method image() = image 
+	
+}
+
 
 object victoria {
 	method position() = game.origin()
 	method cartel() = game.addVisual(self)
 	method image() = "assets/winner.png"
 } 
-
-object gameOverTiempo {
-	method chocar() {}
-	method position() = game.origin()
-    method image() = "assets/perderPorTiempo.png"
- 
-}
-object gameOverGolpeado {
-	method chocar() {}
-    method position() = game.origin()
-    method image() = "assets/erizoGolpeado.png"
-
-}
-object gameOverAhogado {
-	method chocar() {}
-	method position() = game.origin()
-	method image() = "assets/erizoAhogado.png"
-
-}
-object gameOverMapa {
-	method chocar() {}
-	method position() = game.origin()
-	method image() = "assets/erizoFueraDeMapa.png"
-	
-}

@@ -11,9 +11,5 @@ object menu {
 	method pantalla() {
 	game.addVisual(self)
 	
-	}
-	
-
-	
-	
+	}	
 }

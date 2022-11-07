@@ -1,13 +1,10 @@
 import wollok.game.*
-    const perder =  game.sound("audio/sonidoPerder.mp3")
-    const ganarr =  game.sound("audio/sonidoGanar.mp3")
-    const fondo1 =  game.sound("audio/fondo1.mp3") 
+    const soundPerder =  game.sound("audio/sonidoPerder.mp3")
+    const soundGanar =  game.sound("audio/sonidoGanar.mp3")
+    const soundFondo =  game.sound("audio/fondo1.mp3") 
 
-    
-    
        
 object sonido{
-	
 	
 	method play(sonido){sonido.play()}	
 	

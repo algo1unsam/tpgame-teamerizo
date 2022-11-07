@@ -5,81 +5,44 @@ import agua.*
 import temporizador.*
 import sonido.*
 import movimientoPersonajes.*
+import vidas.*
 
 object erizo {
 
-	var vidas = 3
 	var puntos = 0
-	var vivo = true
 	var property position = self.posicionDeInicio()
 	var property direccionDelTronco = derecha
 	var property estaArriba = false
- 
+	var image = "assets/erizo_arriba.png"
 
-	method image() = "assets/erizo_arriba.png"
+	method image() = image
+	
+	method image(newImage){
+		image = newImage
+	}
 	
 	method posicionDeInicio() = game.at(8, 0)
-	 
-		
-	method perderVidaPorVehiculo() {
-	vidas -=1
-    position = self.posicionDeInicio() 
-		   
-	 if(vidas == 0){
-		nivel.perderPor(gameOverGolpeado)
-		}
-	self.restarVida()
 	
-		
-
-	
-}
-	method perderVidaPorAgua() {
-	vidas -=1
-    position = self.posicionDeInicio() 
-	  
-	 if(vidas == 0){
-		nivel.perderPor(gameOverAhogado)
-		}
-	self.restarVida()
-		
-	  		
-	}
-	 
-	method perderVidaPorSaliDeMapa() {
-	vidas -=1
-    position = self.posicionDeInicio() 
-	
-    if(vidas == 0){
-	nivel.perderPor(gameOverMapa)
-		}
-	self.restarVida()
-		
-
+	method reiniciarPosicion(){
+		position = self.posicionDeInicio()
 	}
 	
-	
-	method vidas() = vidas 
-	 
-
-	method morir() {
-		vivo = false
+	method perderVidaPor(motivo){
+		 position = self.posicionDeInicio() 
+		 if(tableroDevidas.tengoCorazonesDisponibles()){
+		 	tableroDevidas.restarCorazon()
+		 	
+		 }else{
+		 	nivel.perderPor(motivo)
+		 }
 	}
-
+	 
 	method quejarse() {
 		game.say(self, "¡Auch!")
 	}
 	
 	method meAhogo(){
 		game.say(self, "¡Me ahogooo!")
-	}
-
-	method iniciar() {
-		vivo = true
-	}
-
-	method estaVivo() {
-		return vivo
 	}
 
 	//Guardamos la direccion en la que se mueve el ultimo tronco con el cual haya colicionado el erizo
@@ -92,7 +55,7 @@ object erizo {
 	method verificarPosicion(){
 		if(agua.estaDentroDelAgua(self) && !self.estaArriba()){
 			game.say(self, "¡Me ahogooo!")
-			self.perderVidaPorAgua()
+			self.perderVidaPor("assets/erizoAhogado.png")
 		}
 			self.fueraDeMapa()
 	}
@@ -108,7 +71,7 @@ object erizo {
 	}
 	
 	method fueraDeEjeX(){
-		if (position.x() == -1 || position.x() == game.width()) self.perderVidaPorSaliDeMapa()
+		if (position.x() == -1 || position.x() == game.width()) self.perderVidaPor("assets/erizoFueraDeMapa.png")
 	}
 	
 	method fueraDeEjeY(){
@@ -121,25 +84,5 @@ object erizo {
 		puntos += valor
 	}
 	
- 
-
 	method puntaje() = puntos
-
-	method ganar() {
-		game.clear()
-		fondo1.pause()
-		victoria.cartel()
-	return ganarr.play()
-	}
-	 
-	
-	method restarVida(){
-  	if(self.vidas() == 2){  	
-  	corazones.get(2).quitar()}
- 
-    if(self.vidas() == 1){ 	
-  	corazones.get(1).quitar()}
-    
-}
-
 }

@@ -8,15 +8,16 @@ import agregarValores.*
 import sonido.*
 
 program juego {
-	game.title("Juego Base")
+	
+	game.title("Erizo Game")
 	nivel.configurate()
 	menu.pantalla()
+	
 	keyboard.num1().onPressDo{
-	game.clear()
-		
+		game.clear()
 		nivel.cargarObjetos(nivelFacil)
 		nivel.iniciarNivel()
-		fondo1.play()
+		soundFondo.play()
 		
 	}
 	
@@ -24,7 +25,7 @@ program juego {
 		game.clear()
 		nivel.cargarObjetos(nivelMedio)
 		nivel.iniciarNivel()
-		fondo1.play()
+		soundFondo.play()
 		
 	}
 	
@@ -32,7 +33,7 @@ program juego {
 		game.clear()
 		nivel.cargarObjetos(nivelDificil)
  		nivel.iniciarNivel()
- 		fondo1.play()
+ 		soundFondo.play()
  
 	}
 	

@@ -69,15 +69,69 @@ class Plataforma {
 
 class Tortuga inherits Plataforma{
 	
-	const imagenDerecha = "assets/tortugaDerecha.png"
-	const imagenIzquierda = "assets/tortugaIzquierda.png"
+	var property imagenDerecha = "assets/tortugaDerecha.png"
+	var property imagenIzquierda = "assets/tortugaIzquierda.png"
+	var debajoDeAgua = false
 	
 	override method velocidad(){
 		velocidad = 1000
 	}
 	
+	method cambiaAimagenRoja(){
+		self.imagenDerecha("assets/tortugaRojaDerecha.png")
+		self.imagenIzquierda("assets/tortugaRojaIzquierda.png")
+	}
+	
+	method cambiarAimagenNormal(){
+		self.imagenDerecha("assets/tortugaDerecha.png")
+		self.imagenIzquierda("assets/tortugaIzquierda.png")
+	}
+	
+	method cambiarAimagenDebajoDelAgua(){
+		self.imagenDerecha("assets/vacio.png")
+		self.imagenIzquierda("assets/vacio.png")
+	}
+	
+	method salirDelAgua(){
+		self.cambiarAimagenNormal()
+		debajoDeAgua = false
+	}
+	
+	method debajoDelAgua(){
+		self.cambiarAimagenDebajoDelAgua()
+		debajoDeAgua = true
+		game.schedule(2000, {self.salirDelAgua()})
+	}
+	
+	method velocidadDeHundimiento() = 10000.randomUpTo(25000)
+	
 	override method image() = if(direc.esDerecha()) imagenDerecha else imagenIzquierda 
 	
+	override method iniciar(){
+		super()
+		game.onTick(self.velocidadDeHundimiento(), "tortugas", {
+			self.avisoPrevioAHundirse()
+		})
+	}
+	
+	method avisoPrevioAHundirse(){
+		self.cambiaAimagenRoja()
+		game.schedule(1000, {self.cambiarAimagenNormal()})
+		game.schedule(2000, {self.cambiaAimagenRoja()})
+		game.schedule(3000, {self.cambiarAimagenNormal()})
+		game.schedule(4000, {self.cambiaAimagenRoja()})
+		game.schedule(5000, {self.cambiarAimagenNormal()})
+		game.schedule(6000, {self.debajoDelAgua()})
+	}
+	
+	override method chocar(){
+		if(debajoDeAgua){
+			erizo.meAhogo()
+			erizo.perderVidaPor("assets/erizoAhogado.png")
+		}else{
+			super()
+		}
+	}
 }
 
 
@@ -100,7 +154,7 @@ class Mantarraya inherits Plataforma{
 	
 	
 	override method velocidad(){
-		velocidad = 400
+		velocidad = 200
 	}
 	
 	override method image() = if(direc.esDerecha()) imagenDerecha else imagenIzquierda 

@@ -6,7 +6,7 @@ import sonido.*
 object reloj {
 
 	var tiempo
-	const tiempoInicial = 60
+	const tiempoInicial = 80
  
 	method text() = "tiempo restate " + tiempo.toString()
 
@@ -15,7 +15,7 @@ object reloj {
 	method pasarTiempo() {
 		tiempo = tiempo - 1
 		if (tiempo == 0) 
-		nivel.perderPor(gameOverTiempo)
+		nivel.perderPor("assets/perderPorTiempo.png")
 	}
 
 	method iniciar() {   
@@ -28,16 +28,5 @@ object reloj {
 	}
 	
 	method chocar(){}
-
-}
-class Vida{
-   var property position 
-   var property image = "assets/corazon.png" 
-    
-
-method quitar() {
-	game.removeVisual(self)
-
-}
 
 }

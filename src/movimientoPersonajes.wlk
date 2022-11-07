@@ -26,6 +26,7 @@ object movimiento {
 	//Mueve al personaje +1 posicion para la direccion seleccionada
 	method mover(direccion, personaje) {
 		personaje.position(direccion.siguiente(personaje.position()))
+		personaje.image(direccion.image())
 	}
 	
 	//Corroboramos si el personaje esta parado en un area permitida o no
@@ -45,6 +46,8 @@ object movimiento {
 }
 
 object izquierda {
+	
+	method image() = "assets/erizo_izquierda.png"
 
 	method siguiente(position) = position.left(1)
 
@@ -55,9 +58,12 @@ object izquierda {
 	method esquina() = -1
 	
 	method esDerecha() = false
+	
 }
 
 object derecha {
+
+	method image() = "assets/erizo_derecha.png"
 
 	method siguiente(position) = position.right(1)
 	
@@ -72,13 +78,17 @@ object derecha {
 }
 
 object abajo {
+	
+	method image() = "assets/erizo_abajo.png"
 
 	method siguiente(position) = position.down(1)
 
 }
 
 object arriba {
-
+	
+	method image() = "assets/erizo_arriba.png"
+	
 	method siguiente(position) = position.up(1)
 
 }
