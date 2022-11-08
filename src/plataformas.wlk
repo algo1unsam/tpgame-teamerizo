@@ -77,28 +77,18 @@ class Tortuga inherits Plataforma{
 		velocidad = 1000
 	}
 	
-	method cambiaAimagenRoja(){
-		self.imagenDerecha("assets/tortugaRojaDerecha.png")
-		self.imagenIzquierda("assets/tortugaRojaIzquierda.png")
-	}
-	
-	method cambiarAimagenNormal(){
-		self.imagenDerecha("assets/tortugaDerecha.png")
-		self.imagenIzquierda("assets/tortugaIzquierda.png")
-	}
-	
-	method cambiarAimagenDebajoDelAgua(){
-		self.imagenDerecha("assets/vacio.png")
-		self.imagenIzquierda("assets/vacio.png")
+	method cambiaimagen(derecha, izquierda){
+		self.imagenDerecha("assets/" + derecha + ".png")
+		self.imagenIzquierda("assets/" + izquierda + ".png")
 	}
 	
 	method salirDelAgua(){
-		self.cambiarAimagenNormal()
+		self.cambiaimagen("tortugaDerecha", "tortugaIzquierda")
 		debajoDeAgua = false
 	}
 	
 	method debajoDelAgua(){
-		self.cambiarAimagenDebajoDelAgua()
+		self.cambiaimagen("vacio", "vacio")
 		debajoDeAgua = true
 		game.schedule(2000, {self.salirDelAgua()})
 	}
@@ -115,12 +105,12 @@ class Tortuga inherits Plataforma{
 	}
 	
 	method avisoPrevioAHundirse(){
-		self.cambiaAimagenRoja()
-		game.schedule(1000, {self.cambiarAimagenNormal()})
-		game.schedule(2000, {self.cambiaAimagenRoja()})
-		game.schedule(3000, {self.cambiarAimagenNormal()})
-		game.schedule(4000, {self.cambiaAimagenRoja()})
-		game.schedule(5000, {self.cambiarAimagenNormal()})
+		self.cambiaimagen("tortugaRojaDerecha", "tortugaRojaIzquierda")
+		game.schedule(1000, {self.cambiaimagen("tortugaDerecha", "tortugaIzquierda")})
+		game.schedule(2000, {self.cambiaimagen("tortugaRojaDerecha", "tortugaRojaIzquierda")})
+		game.schedule(3000, {self.cambiaimagen("tortugaDerecha", "tortugaIzquierda")})
+		game.schedule(4000, {self.cambiaimagen("tortugaRojaDerecha", "tortugaRojaIzquierda")})
+		game.schedule(5000, {self.cambiaimagen("tortugaDerecha", "tortugaIzquierda")})
 		game.schedule(6000, {self.debajoDelAgua()})
 	}
 	
