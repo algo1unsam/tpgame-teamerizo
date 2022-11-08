@@ -1,0 +1,41 @@
+import wollok.game.*
+import nivel.* 
+import vehiculos.*
+import moneda.*
+import plataformas.*
+import menu.*
+import agregarValores.*
+import sonido.*
+
+program juego {
+	
+	game.title("Erizo Game")
+	nivel.configurate()
+	menu.pantalla()
+	
+	keyboard.num1().onPressDo{
+		game.clear()
+		nivel.cargarObjetos(nivelFacil)
+		nivel.iniciarNivel()
+		soundFondo.play()
+		
+	}
+	
+	keyboard.num2().onPressDo{
+		game.clear()
+		nivel.cargarObjetos(nivelMedio)
+		nivel.iniciarNivel()
+		soundFondo.play()
+		
+	}
+	
+	keyboard.num3().onPressDo{
+		game.clear()
+		nivel.cargarObjetos(nivelDificil)
+ 		nivel.iniciarNivel()
+ 		soundFondo.play()
+ 
+	}
+	
+	game.start()
+ }
